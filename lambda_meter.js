@@ -8,7 +8,7 @@ class SmartMeterBilling {
     this.accumulatedReadings = {};
   }
 
-  calculateBillAmount(meterId, timestamp, meterReading) {
+  calculateBillAmount = (meterId, timestamp, meterReading) => {
     const hour = new Date(timestamp).getHours();
     const billingRate = (hour >= 7 && hour < 24) ? this.peakHoursRate : this.offPeakHoursRate;
     const hourlyUsage = this.accumulatedReadings[meterId] ? meterReading - this.accumulatedReadings[meterId] : meterReading;
@@ -23,13 +23,13 @@ class SmartMeterBilling {
     this.accumulatedReadings[meterId] = meterReading;
   }
 
-  processUsageData(usageData) {
+  processUsageData = (usageData) => {
     for (const [meterId, timestamp, meterReading] of usageData) {
       this.calculateBillAmount(meterId, timestamp, meterReading);
     }
   }
 
-  getTotalBillAmount() {
+  getTotalBillAmount = () => {
     return this.totalBillAmount;
   }
 }
