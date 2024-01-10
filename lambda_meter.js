@@ -55,7 +55,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: totalCosts,
+      body: JSON.stringify({ totalCosts }),
     };
   } catch (error) {
     console.error(error);
